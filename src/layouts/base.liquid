@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en"{% if templateClass %} class="{{ templateClass }}"{%- endif %}>
+  <head>
+    <meta charset="utf-8">
+    <title>Title</title>
+    
+    {%- if description %}
+      <meta name="description" content="{{ description }}">
+    {%- endif %}
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#FFFFFF">  
+    
+    {%- if templateClass -%}
+      {% capture templateStyles %}{{ templateClass | append: ".css" }}{% endcapture %}
+      {% includeCSS templateStyles %}
+    {%- endif -%}
+    
+    {% comment %} ToDo: Make it also a URL filter {% endcomment %}
+    <link rel="stylesheet" href="/css/{{ 'additional.css' | cssfile }}" media="print" onload="this.media='all'">   
+    
+  </head>
+  <body>
+    {%- include "./includes/mainHeader.liquid" %}
+    
+    {{ content }}
+    
+    {%- include "./includes/mainFooter.liquid" %}
+    
+    {% comment %} ToDo: Make it also a URL filter {% endcomment %}
+    <script src="/js/{{ 'main.js' | jsfile }}" defer></script>
+    
+  </body>
+</html>

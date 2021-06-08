@@ -1,0 +1,28 @@
+@use '../mq';
+@use 'primitives';
+
+// no classic list
+.ncl {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.no-undl {
+  text-decoration: none;
+}
+
+.inner {
+  max-width: 90.0rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.inner-padding {
+  @extend .inner;
+  --padding-size: #{primitives.$spacing_s};
+  padding-left: var(--padding-size);
+  padding-right: var(--padding-size);
+  @include mq.media(">=large") {
+    --padding-size: 5.0rem;
+  }
+}

@@ -1,0 +1,47 @@
+$header_distance: 8.0rem;
+
+$font_sans: 'Helvetica Now', Helvetica, sans-serif;
+$font_serif: 'Tiempos Text', 'Times New Roman', serif;
+
+$txst-bold: 700;
+$txst-regular: 400;
+
+
+// based on https://zds-tokens.docs.zalando.net/
+$spacing_xxl: 4.0rem;
+$spacing_xl: 3.0rem;
+$spacing_l: 2.25rem;
+$spacing_m: 1.5rem;
+$spacing_s: 1rem;
+$spacing_xs: 0.75rem;
+$spacing_xxs: 0.5rem;
+$spacing_xxxs: 0.25rem;
+$spacing_none: 0;
+
+
+// https://zds.docs.zalando.net/develop/styles/colors/
+$backgroundColor_N900: #1a1a1a;
+$backgroundColor_N400: #66676e;
+$backgroundColor_N300: #a2a3a8;
+$backgroundColor_N250: #d0d1d3;
+$backgroundColor_N200: #efeff0;
+$backgroundColor_N100: #ffffff;
+$backgroundColor_O500: #ff4e00;
+$backgroundColor_R500: #eb0037;
+$backgroundColor_G400: #00875a;
+$backgroundColor_P600: #6328e0;
+
+$borderColor_N900: #1a1a1a;
+$borderColor_N300: #a2a3a8;
+$borderColor_N400: #66676e;
+$borderColor_N250: #d0d1d3;
+$borderColor_R500: #eb0037;
+$borderColor_G400: #00875a;
+
+$textColor_N900: #1a1a1a;
+$textColor_N400: #66676e;
+$textColor_N300: #a2a3a8;
+$textColor_N100: #ffffff;
+$textColor_R500: #eb0037;
+$textColor_G400: #00875a;
+$textColor_P600: #6328e0;

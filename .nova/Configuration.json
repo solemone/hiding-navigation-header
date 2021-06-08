@@ -1,0 +1,8 @@
+{
+  "index.ignored_file_patterns" : [
+    "node_modules"
+  ],
+  "workspace.color" : 6,
+  "workspace.preview_type" : "custom",
+  "workspace.preview_url" : "http:\/\/localhost:3000"
+}

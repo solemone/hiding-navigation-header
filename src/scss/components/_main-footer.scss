@@ -1,0 +1,7 @@
+@use '../mq';
+@use '../utilities/primitives';
+
+// use in impoets like primitives.$variable
+.main-footer {
+  color: hotpink;
+}

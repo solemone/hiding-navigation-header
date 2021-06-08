@@ -1,0 +1,10 @@
+@use '../mq';
+@use 'primitives';
+
+.stack-v > * + * {
+  margin-top: var(--stack-gap, 1rem);
+}
+
+.stack-h > * + * {
+  margin-left: var(--stack-gap, 1rem);
+}

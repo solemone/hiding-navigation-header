@@ -1,0 +1,56 @@
+{
+  "name": "eleventy_base_website",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.11.1",
+    "@11ty/eleventy-img": "^0.7.8",
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@rollup/plugin-babel": "^5.2.3",
+    "@rollup/plugin-node-resolve": "^11.1.1",
+    "autoprefixer": "^10.2.4",
+    "cross-env": "^7.0.3",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^4.1.10",
+    "del-cli": "^3.0.1",
+    "node-rev": "^1.3.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.2.6",
+    "postcss-cli": "^8.3.1",
+    "rollup": "^2.38.5",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.32.6"
+  },
+  "scripts": {
+    "clean": "del-cli 'site/!(img)' '.cache/css'",
+    "sass:base": "sass ./src/scss:.cache/css --no-source-map",
+    "postcss:base": "postcss .cache/css/ --base .cache/css/ --dir ./site/css/",
+    "sass:watch": "npm run sass:base -- --watch",
+    "postcss:watch": "npm run postcss:base -- --watch",
+    "styles:dev": "npm-run-all --parallel sass:watch postcss:watch",
+    "styles:build": "npm-run-all sass:base postcss:base",
+    "styles:manifest": "nodeRev 'site/css/**/*.css' --hash -o 'site/css/' --file 'site/css/paths.json'",
+    "scripts:manifest": "nodeRev 'site/js/**/*.js' --hash -o 'site/js/' --file 'site/js/paths.json'",
+    "scripts:dev": "npx rollup -c rollup.config.js -w",
+    "scripts:build": "npx rollup -c rollup.config.js",
+    "eleventy:dev": "npx eleventy --serve",
+    "eleventy:build": "cross-env ELEVENTY_ENV=production npx eleventy",
+    "start": "npm-run-all clean scripts:build styles:build --parallel styles:dev scripts:dev eleventy:dev",
+    "build": "npm-run-all clean styles:build styles:manifest scripts:build scripts:manifest eleventy:build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solemone/eleventy-base-website.git"
+  },
+  "author": "Ivo Herrmann",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/solemone/eleventy-base-website/issues"
+  },
+  "homepage": "https://github.com/solemone/eleventy-base-website#readme",
+  "description": "",
+  "dependencies": {
+    "gsap": "^3.6.0"
+  },
+  "browserslist": "last 2 versions, not dead, > 1%, IE 11"
+}
