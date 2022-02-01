@@ -1,5 +1,5 @@
 const navigationHeader = document.getElementById('navigationHeader');
-let st;
+let scrollTop;
 let lastScrollTop = 0;
 let scrollDistanceDownEntry = -1;
 let scrollDistanceUpEntry = -1;
@@ -9,27 +9,26 @@ let navigationHeaderHeight = 64;
 let navigationHeaderYposition = 0;
 let isScrolling;
 
-
 window.addEventListener('scroll', handleNavigationHeader);
 
 
 function handleNavigationHeader () {
-  st = window.pageYOffset || document.documentElement.scrollTop; // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
+  scrollTop = window.pageYOffset;
 
-  if (st > lastScrollTop) {
+  if (scrollTop > lastScrollTop) {
     // downscroll code
 
     scrollDistanceUpEntry = -1;
 
     if(scrollDistanceDownEntry === -1) {
       if(navigationHeaderYposition !== 0 && navigationHeaderYposition !== -navigationHeaderHeight) {
-        scrollDistanceDownEntry = st + navigationHeaderYposition;
+        scrollDistanceDownEntry = scrollTop + navigationHeaderYposition;
       } else {
-        scrollDistanceDownEntry = st;
+        scrollDistanceDownEntry = scrollTop;
       }
     }
     
-    scrollDistanceDown = scrollDistanceDownEntry - st;
+    scrollDistanceDown = scrollDistanceDownEntry - scrollTop;
 
     if(scrollDistanceDown < -navigationHeaderHeight) {
       navigationHeaderYposition = -navigationHeaderHeight;
@@ -44,13 +43,13 @@ function handleNavigationHeader () {
 
     if(scrollDistanceUpEntry === -1) {
       if(navigationHeaderYposition !== 0 && navigationHeaderYposition !== -navigationHeaderHeight) {
-        scrollDistanceUpEntry = st + navigationHeaderYposition + navigationHeaderHeight;
+        scrollDistanceUpEntry = scrollTop + navigationHeaderYposition + navigationHeaderHeight;
       } else {
-        scrollDistanceUpEntry = st;        
+        scrollDistanceUpEntry = scrollTop;        
       }
     }
     
-    scrollDistanceUp = (scrollDistanceUpEntry - st) - navigationHeaderHeight;
+    scrollDistanceUp = (scrollDistanceUpEntry - scrollTop) - navigationHeaderHeight;
 
     if(scrollDistanceUp >= 0) {
       navigationHeaderYposition = 0;
@@ -62,7 +61,7 @@ function handleNavigationHeader () {
 
    navigationHeader.style.transform = `translateY(${navigationHeaderYposition}px)`;
 
-   lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+   lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
 
    // Check when scrolling ends
   window.clearTimeout( isScrolling );
@@ -78,8 +77,8 @@ function handleNavigationHeader () {
 
         showHeader.onfinish = function() {
           navigationHeader.style.transform = 'translateY(0px)';
-          scrollDistanceDownEntry = st;
-          scrollDistanceUpEntry = st + navigationHeaderHeight;
+          scrollDistanceDownEntry = scrollTop;
+          scrollDistanceUpEntry = scrollTop + navigationHeaderHeight;
         };
         
       } else {
@@ -92,8 +91,8 @@ function handleNavigationHeader () {
         
         hideHeader.onfinish = function() {
           navigationHeader.style.transform = `translateY(-${navigationHeaderHeight}px)`;
-          scrollDistanceUpEntry = st;
-          scrollDistanceDownEntry = st - navigationHeaderHeight;
+          scrollDistanceUpEntry = scrollTop;
+          scrollDistanceDownEntry = scrollTop - navigationHeaderHeight;
         };
       }
     }
